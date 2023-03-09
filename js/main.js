@@ -71,6 +71,14 @@ slidesDom[activeImage].classList.add("show");
 thumbsImageDom[activeImage].classList.remove("brightness");
 thumbsImageDom[activeImage].classList.add("activeThumbs");
 
+
+
+
+setInterval(goDown(), 3000);
+
+
+
+
 nextDom.addEventListener("click" , 
 
     function () {
