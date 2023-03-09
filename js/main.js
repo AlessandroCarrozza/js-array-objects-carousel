@@ -24,16 +24,6 @@ const images = [
     }
 ];    
 
-
-// array delle src delle img
-// const imagesCarousel = [
-//     "img/01.webp",
-//     "img/02.webp",
-//     "img/03.webp",
-//     "img/04.webp",
-//     "img/05.webp"
-// ];
-
 const sliderDom = document.getElementById("slider");
 const prevDom = document.getElementById("prev");
 const nextDom = document.getElementById("next");
@@ -48,14 +38,19 @@ for (let i = 0; i < images.length; i++) {
     
     let divImage = `<div class="image">
                         <img src="${carouselImage.image}">
-                    </div>`;
+                        <div class= "info">
+                           <h1>${carouselImage.title}</h1>
+                           <h2>${carouselImage.text}</h2></div>
+                        </div>`;
 
     let divThumbs = `<div class="thumbs-images brightness">
                         <img class="thumbs-img" src="${carouselImage.image}">
-                     </div>`;                
+                     </div>`;
+
     
     sliderContent += divImage;
     thumbsContent += divThumbs;
+
 
 }
 
