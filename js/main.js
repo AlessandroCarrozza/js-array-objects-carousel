@@ -24,56 +24,25 @@ const images = [
     }
 ];    
 
-const sliderDom = document.getElementById("slider");
-const prevDom = document.getElementById("prev");
-const nextDom = document.getElementById("next");
-const thumbsDom = document.getElementById("thumbs");
-const slidesDom = document.getElementsByClassName("image");
-let activeImage = 0;
-const thumbsImageDom = document.getElementsByClassName("thumbs-images");
+
+generateCarousel();
 
 
-
-generateElements();
-
-currentImage();
-
-autoplay();
-
-
-// eventi click next e prev
-nextDom.addEventListener("click" , 
-
-    function () {
-
-        goDown()
-
-    });
-
-
-prevDom.addEventListener("click" , 
-
-    function () {
-
-        goUp()
-         
-    });    
-
-
-
-// function per le img attive
-function currentImage () {
-    slidesDom[activeImage].classList.add("show");
-    thumbsImageDom[activeImage].classList.remove("brightness");
-    thumbsImageDom[activeImage].classList.add("activeThumbs");
-}
+// autoplay();
 
 
 // function del ciclo per la creazione degli elementi per il DOM
-function generateElements () {
+function generateCarousel () {
 
     let sliderContent = "";
     let thumbsContent = "";
+    const sliderDom = document.getElementById("slider");
+    const prevDom = document.getElementById("prev");
+    const nextDom = document.getElementById("next");
+    const thumbsDom = document.getElementById("thumbs");
+    const slidesDom = document.getElementsByClassName("image");
+    let activeImage = 0;
+    const thumbsImageDom = document.getElementsByClassName("thumbs-images");
 
     for (let i = 0; i < images.length; i++) {
 
@@ -100,65 +69,83 @@ function generateElements () {
     thumbsDom.innerHTML = thumbsContent;
 
 
-}
 
+    currentImage();
 
-// autoplay 
-function autoplay () {
-    let seconds = 3000;
-    setInterval(function(){
-    goDown()}, seconds);
-}
-
-
-function goUp () {
-        slidesDom[activeImage].classList.remove('show');
-        thumbsImageDom[activeImage].classList.add("brightness");
-        thumbsImageDom[activeImage].classList.remove('activeThumbs');
-     
-        if (activeImage == 0) {
-            activeImage = (slidesDom.length - 1);
-        } else {
-            activeImage--;
-        }
-
-        slidesDom[activeImage].classList.add('show');
+    function currentImage () {
+        slidesDom[activeImage].classList.add("show");
         thumbsImageDom[activeImage].classList.remove("brightness");
         thumbsImageDom[activeImage].classList.add("activeThumbs");
-}
-
-    
-function goDown() {
-        slidesDom[activeImage].classList.remove('show');
-        thumbsImageDom[activeImage].classList.add("brightness");
-        thumbsImageDom[activeImage].classList.remove('activeThumbs');
-     
-        if (activeImage == slidesDom.length -1) {
-            activeImage = 0;
-        } else {
-            activeImage++;
-        }
-
-        slidesDom[activeImage].classList.add('show');
-        thumbsImageDom[activeImage].classList.remove("brightness");
-        thumbsImageDom[activeImage].classList.add("activeThumbs");
-}
-
-
-
-
-function clickThumb () {
-    const thumbImgList = document.getElementsByClassName("thumbs-images");
-    console.log(thumbImgList);
-
-
-    for (let i = 0; i < thumbImgList.length; i++) {
-        
-        thumbImgList[i].addEventListener("click", function() {
-            console.log(images[i]);
-        })
-        
     }
+
+
+
+    btnDirection (nextDom, prevDom, slidesDom, activeImage, thumbsImageDom);
+
 }
 
-clickThumb()
+// function per le direzioni dei btn
+function btnDirection (nextDom, prevDom, slidesDom, activeImage, thumbsImageDom) {
+
+    nextDom.addEventListener("click" , 
+    function () {
+
+    slidesDom[activeImage].classList.remove('show');
+    thumbsImageDom[activeImage].classList.add("brightness");
+    thumbsImageDom[activeImage].classList.remove('activeThumbs');
+ 
+    if (activeImage == slidesDom.length -1) {
+        activeImage = 0;
+    } else {
+        activeImage++;
+    }
+
+    slidesDom[activeImage].classList.add('show');
+    thumbsImageDom[activeImage].classList.remove("brightness");
+    thumbsImageDom[activeImage].classList.add("activeThumbs");
+
+    });
+
+
+    prevDom.addEventListener("click" , 
+    function () {
+
+    slidesDom[activeImage].classList.remove('show');
+    thumbsImageDom[activeImage].classList.add("brightness");
+    thumbsImageDom[activeImage].classList.remove('activeThumbs');
+     
+    if (activeImage == 0) {
+        activeImage = (slidesDom.length - 1);
+    } else {
+        activeImage--;
+    }
+
+    slidesDom[activeImage].classList.add('show');
+    thumbsImageDom[activeImage].classList.remove("brightness");
+    thumbsImageDom[activeImage].classList.add("activeThumbs");
+         
+    });    
+}
+
+
+
+
+// function clickThumb () {
+//     const thumbImgList = document.getElementsByClassName("thumbs-images");
+//     console.log(thumbImgList);
+
+//     let activeImageThumb = 0;
+
+
+//     for (let i = 0; i < thumbImgList.length; i++) {
+        
+//         thumbImgList[i].addEventListener("click", function() {
+
+            
+
+//         })
+        
+//     }
+// }
+
+// clickThumb()
