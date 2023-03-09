@@ -99,6 +99,7 @@ function generateElements () {
     sliderDom.innerHTML = sliderContent;
     thumbsDom.innerHTML = thumbsContent;
 
+
 }
 
 
@@ -142,3 +143,22 @@ function goDown() {
         thumbsImageDom[activeImage].classList.remove("brightness");
         thumbsImageDom[activeImage].classList.add("activeThumbs");
 }
+
+
+
+
+function clickThumb () {
+    const thumbImgList = document.getElementsByClassName("thumbs-images");
+    console.log(thumbImgList);
+
+
+    for (let i = 0; i < thumbImgList.length; i++) {
+        
+        thumbImgList[i].addEventListener("click", function() {
+            console.log(images[i]);
+        })
+        
+    }
+}
+
+clickThumb()
