@@ -75,19 +75,7 @@ nextDom.addEventListener("click" ,
 
     function () {
 
-        slidesDom[activeImage].classList.remove('show');
-        thumbsImageDom[activeImage].classList.add("brightness");
-        thumbsImageDom[activeImage].classList.remove('activeThumbs');
-     
-        if (activeImage == slidesDom.length -1) {
-            activeImage = 0;
-        } else {
-            activeImage++;
-        }
-
-        slidesDom[activeImage].classList.add('show');
-        thumbsImageDom[activeImage].classList.remove("brightness");
-        thumbsImageDom[activeImage].classList.add("activeThumbs");
+        goDown()
 
     });
 
@@ -96,6 +84,12 @@ prevDom.addEventListener("click" ,
 
     function () {
 
+        goUp()
+         
+    });    
+
+
+function goUp () {
         slidesDom[activeImage].classList.remove('show');
         thumbsImageDom[activeImage].classList.add("brightness");
         thumbsImageDom[activeImage].classList.remove('activeThumbs');
@@ -109,8 +103,21 @@ prevDom.addEventListener("click" ,
         slidesDom[activeImage].classList.add('show');
         thumbsImageDom[activeImage].classList.remove("brightness");
         thumbsImageDom[activeImage].classList.add("activeThumbs");
-         
-    });    
-
+}
 
     
+function goDown() {
+        slidesDom[activeImage].classList.remove('show');
+        thumbsImageDom[activeImage].classList.add("brightness");
+        thumbsImageDom[activeImage].classList.remove('activeThumbs');
+     
+        if (activeImage == slidesDom.length -1) {
+            activeImage = 0;
+        } else {
+            activeImage++;
+        }
+
+        slidesDom[activeImage].classList.add('show');
+        thumbsImageDom[activeImage].classList.remove("brightness");
+        thumbsImageDom[activeImage].classList.add("activeThumbs");
+}

@@ -112,7 +112,7 @@
 }
 
 .brightness{
-    filter: brightness(0.4);
+    filter: brightness(0.6);
 }
 
 .activeThumbs{
@@ -125,4 +125,5 @@
     bottom: 0;
     text-align: right;
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
 }
