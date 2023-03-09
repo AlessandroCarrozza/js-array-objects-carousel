@@ -1,9 +1,13 @@
+
+/* utility */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* main code */
 .container{
     width: 100vw;
     height: 100vh;
@@ -85,7 +89,6 @@
 #thumbs{
     height: 100%;
     width: 100%;
-    background-color: red;
 }
 
 #thumbs-container{
