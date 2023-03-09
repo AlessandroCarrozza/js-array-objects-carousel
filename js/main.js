@@ -28,59 +28,20 @@ const sliderDom = document.getElementById("slider");
 const prevDom = document.getElementById("prev");
 const nextDom = document.getElementById("next");
 const thumbsDom = document.getElementById("thumbs");
-
-let sliderContent = "";
-let thumbsContent = "";
-
-for (let i = 0; i < images.length; i++) {
-
-    let carouselImage = images[i];
-    
-    let divImage = `<div class="image">
-                        <img src="${carouselImage.image}">
-                        <div class= "info">
-                           <h1>${carouselImage.title}</h1>
-                           <h2>${carouselImage.text}</h2></div>
-                        </div>`;
-
-    let divThumbs = `<div class="thumbs-images brightness">
-                        <img class="thumbs-img" src="${carouselImage.image}">
-                     </div>`;
-
-    
-    sliderContent += divImage;
-    thumbsContent += divThumbs;
-
-
-}
-
-
-
-sliderDom.innerHTML = sliderContent;
-thumbsDom.innerHTML = thumbsContent;
-
-// array di slider con tutte le img
 const slidesDom = document.getElementsByClassName("image");
-
-// array di thumbs con tutte le img
+let activeImage = 0;
 const thumbsImageDom = document.getElementsByClassName("thumbs-images");
 
 
-let activeImage = 0;
-slidesDom[activeImage].classList.add("show");
-thumbsImageDom[activeImage].classList.remove("brightness");
-thumbsImageDom[activeImage].classList.add("activeThumbs");
+
+generateElements();
+
+currentImage();
+
+autoplay();
 
 
-
-
-setInterval(function(){
-    setInterval(goDown(), 3000);
-}, 3000);
-
-
-
-
+// eventi click next e prev
 nextDom.addEventListener("click" , 
 
     function () {
@@ -97,6 +58,56 @@ prevDom.addEventListener("click" ,
         goUp()
          
     });    
+
+
+
+// function per le img attive
+function currentImage () {
+    slidesDom[activeImage].classList.add("show");
+    thumbsImageDom[activeImage].classList.remove("brightness");
+    thumbsImageDom[activeImage].classList.add("activeThumbs");
+}
+
+
+// function del ciclo per la creazione degli elementi per il DOM
+function generateElements () {
+
+    let sliderContent = "";
+    let thumbsContent = "";
+
+    for (let i = 0; i < images.length; i++) {
+
+        let carouselImage = images[i];
+        
+        let divImage = `<div class="image">
+                            <img src="${carouselImage.image}">
+                            <div class= "info">
+                               <h1>${carouselImage.title}</h1>
+                               <h3>${carouselImage.text}</h3></div>
+                            </div>`;
+    
+        let divThumbs = `<div class="thumbs-images brightness">
+                            <img class="thumbs-img" src="${carouselImage.image}">
+                         </div>`;
+    
+        
+        sliderContent += divImage;
+        thumbsContent += divThumbs;
+    
+    }
+
+    sliderDom.innerHTML = sliderContent;
+    thumbsDom.innerHTML = thumbsContent;
+
+}
+
+
+// autoplay 
+function autoplay () {
+    let seconds = 3000;
+    setInterval(function(){
+    goDown()}, seconds);
+}
 
 
 function goUp () {
