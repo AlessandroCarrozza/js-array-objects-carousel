@@ -9,6 +9,10 @@
 
 
 /* main code */
+body{
+    background-color: blanchedalmond;
+}
+
 .container{
     width: 100vw;
     height: 100vh;
