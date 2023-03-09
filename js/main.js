@@ -74,7 +74,9 @@ thumbsImageDom[activeImage].classList.add("activeThumbs");
 
 
 
-setInterval(goDown(), 3000);
+setInterval(function(){
+    setInterval(goDown(), 3000);
+}, 3000);
 
 
 
