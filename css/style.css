@@ -27,7 +27,6 @@
 .slider-container{
     height: 100%;
     width: 75%;
-    position: relative;
 }
 
 .image{
@@ -60,11 +59,11 @@
 }
 
 .btn.up{
-    top: 20px;
+    top: 10px;
 }
 
 .btn.down{
-    bottom: 20px;
+    bottom: 10px;
 }
 
 .btn i{
@@ -85,9 +84,15 @@
 
 #thumbs{
     height: 100%;
+    width: 100%;
+    background-color: red;
+}
+
+#thumbs-container{
+    height: 100%;
     width: 25%;
     display: inline-block;
-    background-color: red;
+    position: relative;
 }
 
 .thumbs-images{

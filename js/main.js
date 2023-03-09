@@ -36,8 +36,10 @@ for (let i = 0; i < imagesCarousel.length; i++) {
 sliderDom.innerHTML = sliderContent;
 thumbsDom.innerHTML = thumbsContent;
 
-// array con tutte le img
+// array di slider con tutte le img
 const slidesDom = document.getElementsByClassName("image");
+
+// array di thumbs con tutte le img
 const thumbsImageDom = document.getElementsByClassName("thumbs-images");
 
 
