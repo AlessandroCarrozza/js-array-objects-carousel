@@ -1,6 +1,5 @@
-
 /* utility */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,11 +8,11 @@
 
 
 /* main code */
-body{
+body {
     background-color: blanchedalmond;
 }
 
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -21,42 +20,42 @@ body{
     align-items: center;
 }
 
-.img-container{
+.img-container {
     width: 50%;
     height: 50%;
     display: flex;
 }
 
-#slider{
+#slider {
     width: 100%;
     height: 100%;
     display: inline-block;
     position: relative;
 }
 
-.slider-container{
+.slider-container {
     height: 100%;
     width: 75%;
 }
 
-.image{
+.image {
     width: 100%;
     height: 100%;
     display: none;
 }
 
-.image.show{
+.image.show {
     display: block;
 }
 
-.image img{
+.image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 
-.btn{
+.btn {
     width: 40px;
     height: 40px;
     background-color: lightgray;
@@ -68,15 +67,35 @@ body{
     border: 2px solid white;
 }
 
-.btn.up{
+.btn.up {
     top: 10px;
 }
 
-.btn.down{
+.btn.down {
     bottom: 10px;
 }
 
-.btn i{
+.btn-stop {
+    height: 100px;
+    width: 100px;
+    background-color: lightgray;
+    border: 2px solid black;
+    margin: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-stop i {
+    font-size: 2.5rem;
+}
+
+.d-none {
+    display: none;
+}
+
+.btn i {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -84,46 +103,46 @@ body{
     font-size: 30px;
 }
 
-.btn.down i{
+.btn.down i {
     padding-top: 5px;
 }
 
-.btn.hide{
+.btn.hide {
     display: none;
 }
 
-#thumbs{
+#thumbs {
     height: 100%;
     width: 100%;
 }
 
-#thumbs-container{
+#thumbs-container {
     height: 100%;
     width: 25%;
     display: inline-block;
     position: relative;
 }
 
-.thumbs-images{
+.thumbs-images {
     height: calc(100% / 5);
     border: 1px solid black;
 }
 
-.thumbs-img{
+.thumbs-img {
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.brightness{
+.brightness {
     filter: brightness(0.6);
 }
 
-.activeThumbs{
+.activeThumbs {
     border: 3px solid lightgrey;
 }
 
-.info{
+.info {
     position: absolute;
     color: white;
     bottom: 0;

@@ -22,45 +22,48 @@ const images = [
         title: "Marvel's Avengers",
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
-];    
+];
 
 const thumbsImageDom = document.getElementsByClassName("thumbs-images");
 const slidesDom = document.getElementsByClassName("image");
 let activeImage = 0;
+let isStop = false;
+let clock;
 
 
 generateCarousel();
 
 
 // function del ciclo per la creazione degli elementi per il DOM
-function generateCarousel () {
+function generateCarousel() {
 
     let sliderContent = "";
     let thumbsContent = "";
     const sliderDom = document.getElementById("slider");
     const prevDom = document.getElementById("prev");
     const nextDom = document.getElementById("next");
+    const stopDom = document.getElementById("stop");
     const thumbsDom = document.getElementById("thumbs");
 
     for (let i = 0; i < images.length; i++) {
 
         let carouselImage = images[i];
-        
+
         let divImage = `<div class="image">
                             <img src="${carouselImage.image}">
                             <div class= "info">
                                <h1>${carouselImage.title}</h1>
                                <h3>${carouselImage.text}</h3></div>
                             </div>`;
-    
+
         let divThumbs = `<div class="thumbs-images brightness">
                             <img class="thumbs-img" src="${carouselImage.image}">
                          </div>`;
-    
-        
+
+
         sliderContent += divImage;
         thumbsContent += divThumbs;
-    
+
     }
 
     sliderDom.innerHTML = sliderContent;
@@ -68,46 +71,62 @@ function generateCarousel () {
 
     currentImage();
 
-    function currentImage () {
+    function currentImage() {
         slidesDom[activeImage].classList.add("show");
         thumbsImageDom[activeImage].classList.remove("brightness");
         thumbsImageDom[activeImage].classList.add("activeThumbs");
     }
 
-    btnDirection (nextDom, prevDom, slidesDom, activeImage, thumbsImageDom);
+    autoplay();
+
+    btnDirection(nextDom, prevDom, stopDom);
+
 
 }
 
 // function per le direzioni dei btn
-function btnDirection (nextDom, prevDom, slidesDom, activeImage, thumbsImageDom) {
+function btnDirection(nextDom, prevDom, stopDom) {
 
-    nextDom.addEventListener("click" , 
-    function () {
+    nextDom.addEventListener("click",
+        function () {
 
-        goDown();
+            goDown();
 
         });
 
 
-    prevDom.addEventListener("click" , 
-    function () {
+    prevDom.addEventListener("click",
+        function () {
 
-        goUp();
-      
-        });   
-   
+            goUp();
+
+        });
+
+    // button per stoppare l'autoscorrimento delle slide
+    stopDom.addEventListener("click", function () {
+        isStop = !isStop;
+        const pauseItemDom = document.getElementById("pause-item");
+        const playItemDom = document.getElementById("play-item");
+        if (isStop) {
+            clearInterval(clock);
+            pauseItemDom.classList.add("d-none");
+            playItemDom.classList.remove("d-none");
+        } else {
+            autoplay();
+            pauseItemDom.classList.remove("d-none");
+            playItemDom.classList.add("d-none");
+        }
+    });
 
 
-    autoplay();
-    
 }
 
 
-function goUp () {
+function goUp() {
     slidesDom[activeImage].classList.remove('show');
     thumbsImageDom[activeImage].classList.add("brightness");
     thumbsImageDom[activeImage].classList.remove('activeThumbs');
- 
+
     if (activeImage == 0) {
         activeImage = (slidesDom.length - 1);
     } else {
@@ -117,16 +136,16 @@ function goUp () {
     slidesDom[activeImage].classList.add('show');
     thumbsImageDom[activeImage].classList.remove("brightness");
     thumbsImageDom[activeImage].classList.add("activeThumbs");
-    }
+}
 
 
-function goDown () {
+function goDown() {
     slidesDom[activeImage].classList.remove('show');
     thumbsImageDom[activeImage].classList.add("brightness");
     thumbsImageDom[activeImage].classList.remove('activeThumbs');
- 
-    if (activeImage == slidesDom.length -1) {
-         activeImage = 0;
+
+    if (activeImage == slidesDom.length - 1) {
+        activeImage = 0;
     } else {
         activeImage++;
     }
@@ -134,9 +153,10 @@ function goDown () {
     slidesDom[activeImage].classList.add('show');
     thumbsImageDom[activeImage].classList.remove("brightness");
     thumbsImageDom[activeImage].classList.add("activeThumbs");
-    }
+}
 
 
-function autoplay () {
-    setInterval(goDown, 3000);
+
+function autoplay() {
+    clock = setInterval(goDown, 3000);
 }
